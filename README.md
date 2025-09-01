@@ -1,38 +1,122 @@
-Role Name
-=========
+# Role: deploy\_html\_app
 
-A brief description of the role goes here.
+## Description
 
-Requirements
-------------
+This Ansible role automates the deployment of a simple HTML application across multiple servers.
+It installs required packages (Apache/Nginx depending on configuration), copies an HTML file from the control machine to the target servers, and ensures the web service is running.
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role can be used with an inventory file to target multiple servers at once (for example, for load balancing with AWS EC2 instances).
 
-Role Variables
---------------
+---
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+## Requirements
 
-Dependencies
-------------
+* Ansible installed on the control node
+* SSH access to target servers (with key or password)
+* Git installed (if you are cloning from a GitHub repository instead of copying static files)
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+---
 
-Example Playbook
-----------------
+## Role Variables
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Variables can be defined in `defaults/main.yml` or directly in the playbook.
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+| Variable        | Default         | Description                                                         |
+| --------------- | --------------- | ------------------------------------------------------------------- |
+| `html_src_file` | `index.html`    | Path to the HTML file on the control node                           |
+| `html_dest_dir` | `/var/www/html` | Destination directory on target servers                             |
+| `web_package`   | `apache2`       | Web server package (e.g., `apache2` for Ubuntu, `httpd` for CentOS) |
 
-License
--------
+---
+
+## Inventory File (`inventory.ini`)
+
+The **inventory.ini** defines the target hosts (servers) where the playbook will run. Example:
+
+```ini
+[webservers]
+server1 ansible_host=192.168.1.10 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/id_rsa
+server2 ansible_host=192.168.1.11 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/id_rsa
+```
+
+Here:
+
+* `webservers` → group name of servers
+* `ansible_host` → IP or DNS of server
+* `ansible_user` → SSH user
+* `ansible_ssh_private_key_file` → SSH private key path (or you can use password auth)
+
+---
+
+## Example Playbook (`site.yml`)
+
+```yaml
+- name: Deploy HTML application
+  hosts: webservers
+  become: yes
+
+  roles:
+    - deploy_html_app
+```
+
+---
+
+## Running the Playbook
+
+Run the playbook with:
+
+```bash
+ansible-playbook -i inventory.ini site.yml
+```
+
+If using password-based login instead of SSH keys:
+
+```bash
+ansible-playbook -i inventory.ini site.yml --ask-pass --ask-become-pass
+```
+
+---
+
+## Example Workflow
+
+1. Clone the repo:
+
+   ```bash
+   git clone https://github.com/yourusername/deploy_html_app.git
+   cd deploy_html_app
+   ```
+
+2. Update `inventory.ini` with your server details
+
+3. Place your `index.html` in the role’s `files/` directory
+
+4. Run the playbook
+
+5. Access your app in the browser:
+
+   ```
+   http://<server-ip>/
+   ```
+
+---
+
+## Dependencies
+
+None (but ensure SSH connectivity and package manager availability).
+
+---
+
+## License
 
 BSD
 
-Author Information
-------------------
+---
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+## Author Information
+
+* Maintainer: **Albin Raju**
+* MCA Student | DevOps & AI Enthusiast
+* [GitHub](https://github.com/albinraju29)
+
+---
+
