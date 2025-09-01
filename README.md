@@ -1,5 +1,3 @@
----
-
 # Ansible Roles: Web Server & HTML App Deployment
 
 This repository contains two powerful and reusable **Ansible roles**:
