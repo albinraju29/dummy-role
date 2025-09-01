@@ -1,0 +1,12 @@
+---
+# Packages to be installed
+packages_debian:
+  - nginx
+  - apache2
+  - php
+
+packages_redhat:
+  - nginx
+  - httpd
+  - php
+

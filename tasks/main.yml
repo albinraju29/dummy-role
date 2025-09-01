@@ -1,0 +1,14 @@
+---
+- name: Install packages on Debian family
+  apt:
+    name: "{{ packages_debian }}"
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Install packages on RedHat family
+  yum:
+    name: "{{ packages_redhat }}"
+    state: present
+  when: ansible_os_family == "RedHat"
+

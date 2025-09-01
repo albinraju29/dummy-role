@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>S3 Deployment Test Site</title>
+  <style>
+    /* Reset & Fonts */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background: #333;
+      padding: 1rem;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #00f2fe;
+    }
+
+    /* Sections */
+    section {
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    section:nth-child(even) {
+      background: #f0f8ff;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      color: #4facfe;
+    }
+
+    p {
+      max-width: 700px;
+      margin: auto;
+      margin-bottom: 2rem;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Button */
+    button {
+      background: #4facfe;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #00c6fb;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>🚀 Welcome to My S3 Site</h1>
+    <p>A simple static website deployed on <strong>Amazon S3</strong></p>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About This Project</h2>
+    <p>This is a demo site to test static website hosting on Amazon S3. 
+    It includes HTML, CSS, and JavaScript in one file. 
+    You can upload this file as <code>index.html</code> to your bucket and 
+    enable static website hosting to see it live.</p>
+    <button onclick="showAlert()">Test JavaScript</button>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="card">
+        <h3>⚡ Fast Deployment</h3>
+        <p>Upload your static site files to S3 and deploy in seconds.</p>
+      </div>
+      <div class="card">
+        <h3>🔒 Secure</h3>
+        <p>Control access with IAM, bucket policies, and CloudFront.</p>
+      </div>
+      <div class="card">
+        <h3>🌍 Global</h3>
+        <p>Distribute content worldwide using S3 + CloudFront CDN.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>If you see this site running, your S3 deployment works! 🎉</p>
+    <p>Created by <strong>Your Name</strong></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 My S3 Test Site | Powered by AWS S3</p>
+  </footer>
+
+  <script>
+    function showAlert() {
+      alert("✅ JavaScript is working on your S3 site!");
+    }
+  </script>
+</body>
+</html>

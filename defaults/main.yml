@@ -1,0 +1,7 @@
+---
+# defaults file for nginx
+
+packages_state: present   # can be present/absent/latest
+services_state: started   # can be started/stopped
+services_enabled: true
+

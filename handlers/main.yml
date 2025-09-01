@@ -1,0 +1,45 @@
+---
+- name: start nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
+
+- name: start apache2
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+  when: ansible_os_family == "Debian"
+
+- name: start httpd
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+  when: ansible_os_family == "RedHat"
+
+- name: restart apache2
+  service:
+    name: apache2
+    state: restarted
+  when: ansible_os_family == "Debian"
+
+- name: restart httpd
+  service:
+    name: httpd
+    state: restarted
+  when: ansible_os_family == "RedHat"
+
+- name: start php
+  service:
+    name: php-fpm
+    state: started
+    enabled: yes
+  when: ansible_os_family == "RedHat"
+
